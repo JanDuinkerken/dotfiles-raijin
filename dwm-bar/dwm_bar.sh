@@ -22,11 +22,11 @@ export SEP1="["
 export SEP2="]"
 
 # Import the modules
-. "$DIR/bar-functions/dwm_mpc.sh"
+#. "$DIR/bar-functions/dwm_mpc.sh"
 . "$DIR/bar-functions/dwm_spotify.sh"
 . "$DIR/bar-functions/dwm_resources.sh"
-. "$DIR/bar-functions/dwm_battery.sh"
-. "$DIR/bar-functions/dwm_pulse.sh"
+#. "$DIR/bar-functions/dwm_battery.sh"
+#. "$DIR/bar-functions/dwm_pulse.sh"
 . "$DIR/bar-functions/dwm_date.sh"
 . "$DIR/bar-functions/dwm_upt.sh"
 
@@ -42,7 +42,7 @@ do
 #    dispstr="$dispstr$(dwm_transmission)"
 #    dispstr="$dispstr$(dwm_cmus)"
 #    dispstr="$dispstr$(dwm_mpc)"
-#    dispstr="$dispstr$(dwm_spotify)"
+    dispstr="$dispstr$(dwm_spotify)"
 #    dispstr="$dispstr$(dwm_weather)"
     dispstr="$dispstr$(dwm_resources)"
     dispstr="$dispstr$(dwm_upt)"

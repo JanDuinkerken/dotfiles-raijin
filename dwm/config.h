@@ -7,7 +7,7 @@ static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 /*  Display modes of the tab bar: never shown, always shown, shown only in  */
 /*  monocle mode in the presence of several windows.                        */
 /*  Modes after showtab_nmodes are disabled.                                */
@@ -15,7 +15,8 @@ enum showtab_modes { showtab_never, showtab_auto, showtab_nmodes, showtab_always
 static const int showtab			= showtab_auto;        /* Default tab bar show mode */
 static const int toptab				= False;               /* False means bottom tab bar */
 
-static const char *fonts[]     = {"Helvetica Neue:size=13:antialias=true:autohint=true"};
+static const char *fonts[]     = {"Helvetica Neue:size=13:antialias=true:autohint=true",
+                                  "FontAwesome:size=11:antialias=true:autohint=true"};
 static const char dmenufont[]       = "Helvetica Neue:size=13:antialias=true:autohint=true";
 
 static const char col_gray1[]       = "#fdf1c7";
