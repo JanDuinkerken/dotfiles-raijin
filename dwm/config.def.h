@@ -15,8 +15,12 @@ enum showtab_modes { showtab_never, showtab_auto, showtab_nmodes, showtab_always
 static const int showtab			= showtab_auto;        /* Default tab bar show mode */
 static const int toptab				= False;               /* False means bottom tab bar */
 
-static const char *fonts[]     = {"Helvetica Neue:size=13:antialias=true:autohint=true"};
-static const char dmenufont[]       = "Helvetica Neue:size=13:antialias=true:autohint=true";
+static const char *fonts[]     = {"RobotoMono:size=9:antialias=true:autohint=true",
+                                  "Hack Nerd Font:size=8:antialias=true:autohint=true",
+                                  "Sarasa UI SC:size=8:antialias=true:autohint=true",
+                                  "JoyPixels:size=10:antialias=true:autohint=true"
+						     	};
+static const char dmenufont[]       = "Sarasa UI SC:size=10:antialias=true:autohint=true";
 
 static const char col_gray1[]       = "#fdf1c7";
 static const char col_gray2[]       = "#ebdbb2";
@@ -31,11 +35,41 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+//static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
-  {"Gimp",    NULL,   NULL,   0,    1,    -1},
-  {"Firefox", NULL,   NULL,   1<<8, 0,    -1},
+	/* xprop(1):
+	 *	WM_CLASS(STRING) = instance, class
+	 *	WM_NAME(STRING) = title
+	 */
+	/* class                            instance                    title               tags mask     isfloating   monitor */
+	{ "jetbrains-*",                    "JetBrains Toolbox",        NULL,               1 << 1,       1,           -1 },
+	{ "jetbrains-*",                    "sun-awt-X11-XFramePeer",   NULL,               1 << 1,       0,           -1 },
+	{ "jetbrains-*",                    "jetbrains-*",              "win0",             1 << 1,       1,           -1 },
+	{ "jetbrains-*",                    NULL,                       "Welcome to*",      1 << 1,       1,           -1 },
+    { "Google-chrome",                 "google-chrome",             NULL,               1 << 2,       0,           -1 },
+	{ "Vivaldi-stable",                 "vivaldi-stable",           NULL,               1 << 2,       0,           -1 },
+	{ "FirefoxNightly",                 NULL,                       NULL,               1 << 2,       0,           -1 },
+	{ "Nightly",                        NULL,                       NULL,               1 << 2,       0,           -1 },
+	{ "Navigator",                      "Nightly",                  NULL,               1 << 2,       0,           -1 },
+	{ "Alacritty",                      "kitty-music",              NULL,               1 << 3,       0,           -1 },
+	{ "kitty-music",                    NULL,                       NULL,               1 << 3,       0,           -1 },
+	{ "qqmusic",                        NULL,                       NULL,               1 << 3,       0,           -1 },
+	{ "Spotify",                        "spotify",                  NULL,               1 << 3,       0,           -1 },
+	{ "netease-cloud-music",            NULL,                       NULL,               1 << 3,       0,           -1 },
+	{ "Steam",                          NULL,                       NULL,               1 << 4,       0,           -1 },
+	{ "VirtualBox Machine",             NULL,                       NULL,               1 << 5,       0,           -1 },
+	{ "Alacritty",                      "Alacritty",                NULL,               1 << 6,       0,           -1 },
+	{ "Qq",                             "qq",                       NULL,               1 << 6,       1,           -1 },
+	{ "Freechat",                       "freechat",                 NULL,               1 << 6,       0,           -1 },
+	{ "TelegramDesktop",                NULL,                       NULL,               1 << 7,       0,           -1 },
+	{ "qv2ray",                         NULL,                       NULL,               1 << 8,       0,           -1 },
+	{ NULL,                             "kitty-reload",             NULL,               1 << 8,       0,           -1 },
+
+	{ "xdman-Main",                     NULL,                       NULL,               0,            1,           -1 },
+	{ "Nitrogen",                       NULL,                       NULL,               0,            1,           -1 },
+	{ "lxappearance",                   NULL,                       NULL,               0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -68,9 +102,9 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[3] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *windowswitchcmd[] = { "rofi", "-show", "window", NULL };
-static const char *termcmd[] = {"alacritty", NULL};
 static const char *clipmenucmd[]    = { "clipmenu", "-i", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray4, "-sb", col_cyan, "-sf", col_gray2, NULL};
-static const char *dmenucmd[]    = { "dmenu_run", "-m", dmenufont, "-fn", col_gray4, "-nf", col_gray1, "-sb", col_cyan, "-sf", col_gray4, NULL};
+static const char *dmenucmd[]    = { "dmenu_run_history", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray4, "-sb", col_cyan, "-sf", col_gray2, NULL};
+static const char *termcmd[]  = { "kitty", "--single-instance", NULL };
 
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+3%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-3%",     NULL };
@@ -83,7 +117,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_w,           spawn,          {.v = windowswitchcmd } },
 	{ MODKEY,                       XK_b,           togglebar,      {0} },
-  { MODKEY|ControlMask,           XK_m,           focusmaster,    {0} },
+    { MODKEY|ControlMask,           XK_m,           focusmaster,    {0} },
 	{ MODKEY,                       XK_j,           focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,           focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,           incnmaster,     {.i = +1 } },
@@ -107,11 +141,27 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period,      tagmon,         {.i = +1 } },
 
     /* My Own App Start Ways */
+    { Mod1Mask,                     XK_c,           spawn,          CMD("code") },
+    { MODKEY,                       XK_e,           spawn,          CMD("google-chrome-stable") },
+    { MODKEY,                       XK_z,           spawn,          CMD("zathura") },
     { MODKEY|ShiftMask,             XK_Return,      spawn,          CMD("alacritty") },
     { MODKEY|ShiftMask,             XK_q,           spawn,          CMD("xkill") },
     { MODKEY|ShiftMask,             XK_s,           spawn,          CMD("flameshot gui") },
     { MODKEY|ShiftMask,             XK_n,           spawn,          CMD("thunar") },
+    { MODKEY|ShiftMask,             XK_m,           spawn,          CMD("alacritty --class kitty-music -e ncmpcpp") },
+    { MODKEY|ShiftMask,             XK_h,           spawn,          CMD("alacritty -e htop") },
     { MODKEY|ShiftMask,             XK_e,           spawn,          CMD("emacs") },
+    { MODKEY|ShiftMask,             XK_v,           spawn,          CMD("VBoxManage startvm 'Windows7' --type gui") },
+
+    { Mod1Mask|ControlMask,         XK_Delete,      spawn,          CMD("betterlockscreen -l") },
+    { Mod1Mask|ControlMask,         XK_s,           spawn,          CMD("systemctl suspend") },
+
+    /*IDE start*/
+    { Mod1Mask,                     XK_i,           spawn,          CMD("idea") },
+    { Mod1Mask,                     XK_l,           spawn,          CMD("clion") },
+    { Mod1Mask,                     XK_p,           spawn,          CMD("pycharm") },
+    { Mod1Mask,                     XK_a,           spawn,          CMD("studio") },
+    { Mod1Mask,                     XK_g,           spawn,          CMD("goland") },
 
     /* Mpd control */
     { MODKEY|ControlMask,           XK_p,           spawn,          CMD("mpc toggle") },
