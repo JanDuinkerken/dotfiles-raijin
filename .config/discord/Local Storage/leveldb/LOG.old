@@ -1,0 +1,5 @@
+2022/01/26-22:12:03.904 147b Creating DB /home/jandr/.dotfiles-entropy/.config/discord/Local Storage/leveldb since it was missing.
+2022/01/26-22:12:03.907 147b Reusing MANIFEST /home/jandr/.dotfiles-entropy/.config/discord/Local Storage/leveldb/MANIFEST-000001
+2022/01/26-22:13:32.767 1540 Level-0 table #5: started
+2022/01/26-22:13:32.769 1540 Level-0 table #5: 164279 bytes OK
+2022/01/26-22:13:32.770 1540 Delete type=0 #3
