@@ -1,7 +1,6 @@
 # dwm-bar
 A modular statusbar for dwm
-![screenshot](sshot.png)
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J11S7DZ)
+
 ## Table of Contents
 - [Current Functions](#current-functions)
   - [dwm_alsa](#dwm_alsa)
@@ -222,12 +221,4 @@ Whereas, if it is not set it will display:
 ```
 [MAIL 0]
 ```
-## Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md) before contributing.
-## Acknowledgements
-Code for some functions was modified from:
-* [Klemens Nanni](https://notabug.org/kl3)
-* [@boylemic](https://github.com/boylemic/configs/blob/master/dwm_status)
-* [Parket Johnson](https://github.com/ronno/scripts/blob/master/xsetcmus)
-* [suckless.org](https://dwm.suckless.org/status_monitor/)
-* [@mcallistertyler95](https://github.com/mcallistertyler95/dwm-bar)
+
