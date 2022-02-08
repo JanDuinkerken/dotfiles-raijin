@@ -16,7 +16,8 @@ static const int showtab			= showtab_auto;        /* Default tab bar show mode *
 static const int toptab				= False;               /* False means bottom tab bar */
 
 static const char *fonts[]     = {"Helvetica Neue:size=13:antialias=true:autohint=true",
-                                  "FontAwesome:size=11:antialias=true:autohint=true"};
+                                  "FontAwesome:size=11:antialias=true:autohint=true",
+                                  "Fire Code:size=11:antialias=true:autohint=true"};
 static const char dmenufont[]       = "Helvetica Neue:size=13:antialias=true:autohint=true";
 
 static const char col_gray1[]       = "#fdf1c7";
